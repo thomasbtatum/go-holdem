@@ -1,0 +1,10 @@
+language: generic
+sudo: required
+services:
+  - docker
+
+before_install:
+ - docker build -t thomasbtatum/go-holdem -f Dockerfile.dev .
+
+script:
+ - docker run -e CI=true thomasbtatum/go-holdem npm run test -- --coverage
